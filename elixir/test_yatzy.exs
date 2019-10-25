@@ -66,16 +66,16 @@ defmodule YatzyTest do
   end
 
   test "three of a kind" do
-    assert 9 == Yatzy.three_of_a_kind(3,3,3,4,5)
-    assert 15 == Yatzy.three_of_a_kind(5,3,5,4,5)
-    assert 9 == Yatzy.three_of_a_kind(3,3,3,3,5)
+    assert 9 == threeOfaKind(3,3,3,4,5)
+    assert 15 == threeOfaKind(5,3,5,4,5)
+    assert 9 == threeOfaKind(3,3,3,3,5)
   end
 
   test "for of a kind" do
-    assert 12 == Yatzy.four_of_a_kind(3,3,3,3,5)
-    assert 20 == Yatzy.four_of_a_kind(5,5,5,4,5)
-    assert 9 == Yatzy.three_of_a_kind(3,3,3,3,3)
-    assert 12 == Yatzy.four_of_a_kind(3,3,3,3,3)
+    assert 12 == fourOfAKind(3,3,3,3,5)
+    assert 20 == fourOfAKind(5,5,5,4,5)
+    assert 9 == threeOfaKind(3,3,3,3,3)
+    assert 12 == fourOfAKind(3,3,3,3,3)
   end
 
   test "it should score a small straight" do

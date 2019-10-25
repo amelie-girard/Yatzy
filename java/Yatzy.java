@@ -61,13 +61,13 @@ public class Yatzy {
     public int score_pair() {
         List<Integer> sortedList = dices.stream().sorted().collect(Collectors.toList());
         for (int i = sortedList.size() - 1; i > 0; i--) {
-            if (find_pair_of_n(sortedList.get(i)))
+            if (findPairOfN(sortedList.get(i)))
                 return sortedList.get(i) * 2;
         }
         return 0;
     }
 
-    private boolean find_pair_of_n(int n) {
+    private boolean findPairOfN(int n) {
         int[] total = { 0 };
         dices.forEach(dice -> {
             if (dice == n)
@@ -76,37 +76,37 @@ public class Yatzy {
         return total[0] >= 2;
     }
 
-    public int two_pair() {
+    public int twoPairs() {
         int nbPair = 0;
         int sum = 0;
         List<Integer> sortedList = dices.stream().sorted().collect(Collectors.toList());
         for (int i = sortedList.size() - 1; i > 0; i--) {
-            if (find_pair_of_n(sortedList.get(i))) {
+            if (findPairOfN(sortedList.get(i))) {
                 sum += (sortedList.get(i) * 2);
                 nbPair++;
-                remove_n(sortedList.get(i));
+                removeN(sortedList.get(i));
             }
         }
         return nbPair == 2 ? sum : 0;
     }
 
-    private void remove_n(int n) {
+    private void removeN(int n) {
         for (int i = 0; i < dices.size(); i++) {
             if (dices.get(i) == n)
                 dices.set(i, -1);
         }
     }
 
-    public int four_of_a_kind() {
+    public int fourOfaKind() {
         int diffDices = dices.stream().distinct().collect(Collectors.toList()).size();
         List<Integer> sortedList = dices.stream().sorted().collect(Collectors.toList());
         if (diffDices > 2) {
             return 0;
         }
-        return n_of_a_king(sortedList, 4);
+        return nOfaKind(sortedList, 4);
     }
 
-    private int n_of_a_king(List<Integer> sortedList, int n) {
+    private int nOfaKind(List<Integer> sortedList, int n) {
         int counts = 1;
         int sum = sortedList.get(0);
         for (int i = 0; i < sortedList.size() - 1; i++) {
@@ -123,13 +123,13 @@ public class Yatzy {
         return counts == n ? sum : 0;
     }
 
-    public int three_of_a_kind() {
+    public int threeOfaKind() {
         int diffDices = dices.stream().distinct().collect(Collectors.toList()).size();
         List<Integer> sortedList = dices.stream().sorted().collect(Collectors.toList());
         if (diffDices > 3) {
             return 0;
         }
-        return n_of_a_king(sortedList, 3);
+        return nOfaKind(sortedList, 3);
     }
 
     public int smallStraight() {
@@ -163,7 +163,7 @@ public class Yatzy {
 
     public int fullHouse() {
         List<Integer> distinctDice = dices.stream().distinct().collect(Collectors.toList());
-        if (distinctDice.size() == 2 && four_of_a_kind() == 0) {
+        if (distinctDice.size() == 2 && fourOfaKind() == 0) {
             int[] sum = { 0 };
             dices.forEach(dice -> sum[0] += dice);
             return sum[0];
