@@ -114,20 +114,20 @@ public class Yatzy {
 
     private int n_of_a_king(List<Integer> sortedList, int n) {
         int counts = 1;
-        int sum = 0;
+        int sum = sortedList.get(0);
         for (int i = 0; i < sortedList.size() - 1; i++) {
             if (counts == n) {
-                sum += sortedList.get(i);
                 return sum;
             } else if ((sortedList.get(i) == sortedList.get(i + 1))) {
                 counts++;
-                sum += sortedList.get(i);
+                sum += sortedList.get(i+1);
             } else {
                 counts = 1;
+                sum = sortedList.get(i+1);
             }
 
         }
-        return counts == 3 ? sum + sortedList.get(sortedList.size()-1): 0;
+        return counts == n ? sum : 0;
     }
 
     public  int three_of_a_kind()
@@ -175,7 +175,7 @@ public class Yatzy {
     public  int fullHouse()
     {
         List<Integer> distinctDice = dices.stream().distinct().collect(Collectors.toList());
-        if (distinctDice.size() == 2){
+        if (distinctDice.size() == 2 && four_of_a_kind() == 0){
             int []sum = {0};
             dices.forEach(dice -> sum[0] += dice);
             return sum[0];
