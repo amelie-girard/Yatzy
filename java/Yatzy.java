@@ -102,34 +102,42 @@ public class Yatzy {
             return 0;
     }
 
-    public static int four_of_a_kind(int _1, int _2, int d3, int d4, int d5)
+    public int four_of_a_kind()
     {
-        int[] tallies;
-        tallies = new int[6];
-        tallies[_1-1]++;
-        tallies[_2-1]++;
-        tallies[d3-1]++;
-        tallies[d4-1]++;
-        tallies[d5-1]++;
-        for (int i = 0; i < 6; i++)
-            if (tallies[i] >= 4)
-                return (i+1) * 4;
-        return 0;
+        int diffDices = dices.stream().distinct().collect(Collectors.toList()).size();
+        List<Integer> sortedList = dices.stream().sorted().collect(Collectors.toList());
+        if(diffDices >2){
+            return 0;
+        }
+        return n_of_a_king(sortedList, 4);
     }
 
-    public static int three_of_a_kind(int d1, int d2, int d3, int d4, int d5)
+    private int n_of_a_king(List<Integer> sortedList, int n) {
+        int counts = 1;
+        int sum = 0;
+        for (int i = 0; i < sortedList.size() - 1; i++) {
+            if (counts == n) {
+                sum += sortedList.get(i);
+                return sum;
+            } else if ((sortedList.get(i) == sortedList.get(i + 1))) {
+                counts++;
+                sum += sortedList.get(i);
+            } else {
+                counts = 1;
+            }
+
+        }
+        return counts == 3 ? sum + sortedList.get(sortedList.size()-1): 0;
+    }
+
+    public  int three_of_a_kind()
     {
-        int[] t;
-        t = new int[6];
-        t[d1-1]++;
-        t[d2-1]++;
-        t[d3-1]++;
-        t[d4-1]++;
-        t[d5-1]++;
-        for (int i = 0; i < 6; i++)
-            if (t[i] >= 3)
-                return (i+1) * 3;
-        return 0;
+      int diffDices = dices.stream().distinct().collect(Collectors.toList()).size();
+      List<Integer> sortedList = dices.stream().sorted().collect(Collectors.toList());
+        if(diffDices >3){
+            return 0;
+        }
+        return n_of_a_king(sortedList, 3);
     }
 
     public int smallStraight()
@@ -167,7 +175,7 @@ public class Yatzy {
     public  int fullHouse()
     {
         List<Integer> distinctDice = dices.stream().distinct().collect(Collectors.toList());
-        if (distinctDice.size() == 2 ){
+        if (distinctDice.size() == 2){
             int []sum = {0};
             dices.forEach(dice -> sum[0] += dice);
             return sum[0];
