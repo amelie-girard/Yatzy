@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -60,41 +61,44 @@ public class Yatzy {
 
     public int score_pair() {
         List<Integer> sortedList = dices.stream().sorted().collect(Collectors.toList());
-        for (int i = sortedList.size() - 1; i > 0; i--){
-            if(find_pair_of_n(sortedList.get(i)))
-                return sortedList.get(i)*2;
+        for (int i = sortedList.size() - 1; i > 0; i--) {
+            if (find_pair_of_n(sortedList.get(i)))
+                return sortedList.get(i) * 2;
         }
         return 0;
     }
 
     private boolean find_pair_of_n(int n) {
-        int []total = {0};
+        int[] total = { 0 };
         dices.forEach(dice -> {
             if (dice == n)
-                total[0] ++;
+                total[0]++;
         });
 
         return total[0] >= 2;
     }
 
-    public static int two_pair(int d1, int d2, int d3, int d4, int d5) {
-        int[] counts = new int[6];
-        counts[d1 - 1]++;
-        counts[d2 - 1]++;
-        counts[d3 - 1]++;
-        counts[d4 - 1]++;
-        counts[d5 - 1]++;
-        int n = 0;
-        int score = 0;
-        for (int i = 0; i < 6; i += 1)
-            if (counts[6 - i - 1] >= 2) {
-                n++;
-                score += (6 - i);
+    public int two_pair() {
+        int nbPair = 0;
+        int sum = 0;
+        List<Integer> sortedList = dices.stream().sorted().collect(Collectors.toList());
+        for (int i = sortedList.size() - 1; i > 0; i--) {
+            if (find_pair_of_n(sortedList.get(i))) {
+                sum += (sortedList.get(i) * 2);
+                nbPair++;
+                remove_n(sortedList.get(i));
             }
-        if (n == 2)
-            return score * 2;
-        else
-            return 0;
+
+        }
+
+        return nbPair == 2 ? sum : 0;
+    }
+
+    private void remove_n(int n) {
+        for (int i = 0; i < dices.size(); i++) {
+            if (dices.get(i) == n)
+                dices.set(i, -1);
+        }
     }
 
     public int four_of_a_kind() {
