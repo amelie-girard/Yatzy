@@ -1,11 +1,16 @@
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Yatzy {
 
-    protected List<Integer> dices;
+    private static final int ONE = 1;
+    private static final int TWO = 2;
+    private static final int THREE = 3;
+    private static final int FOUR = 4;
+    private static final int FIVE = 5;
+    private static final int SIX = 6;
+    private List<Integer> dices;
 
     public Yatzy(int d1, int d2, int d3, int d4, int d5) {
         dices = Arrays.asList(d1, d2, d3, d4, d5);
@@ -24,39 +29,33 @@ public class Yatzy {
     }
 
     public int ones() {
+        return numberOfNs(ONE);
+    }
+
+    private int numberOfNs(int i) {
         int[] sum = { 0 };
-        dices.stream().filter(dice -> dice == 1).forEach(dice -> sum[0] += dice);
+        dices.stream().filter(dice -> dice == i).forEach(dice -> sum[0] += dice);
         return sum[0];
     }
 
     public int twos() {
-        int[] sum = { 0 };
-        dices.stream().filter(dice -> dice == 2).forEach(dice -> sum[0] += dice);
-        return sum[0];
+        return numberOfNs(TWO);
     }
 
     public int threes() {
-        int[] sum = { 0 };
-        dices.stream().filter(dice -> dice == 3).forEach(dice -> sum[0] += dice);
-        return sum[0];
+        return numberOfNs(THREE);
     }
 
     public int fours() {
-        int[] sum = { 0 };
-        dices.stream().filter(dice -> dice == 4).forEach(dice -> sum[0] += dice);
-        return sum[0];
+        return numberOfNs(FOUR);
     }
 
     public int fives() {
-        int[] sum = { 0 };
-        dices.stream().filter(dice -> dice == 5).forEach(dice -> sum[0] += dice);
-        return sum[0];
+        return numberOfNs(FIVE);
     }
 
     public int sixes() {
-        int[] sum = { 0 };
-        dices.stream().filter(dice -> dice == 6).forEach(dice -> sum[0] += dice);
-        return sum[0];
+        return numberOfNs(SIX);
     }
 
     public int score_pair() {
@@ -74,7 +73,6 @@ public class Yatzy {
             if (dice == n)
                 total[0]++;
         });
-
         return total[0] >= 2;
     }
 
@@ -88,9 +86,7 @@ public class Yatzy {
                 nbPair++;
                 remove_n(sortedList.get(i));
             }
-
         }
-
         return nbPair == 2 ? sum : 0;
     }
 
@@ -123,7 +119,6 @@ public class Yatzy {
                 counts = 1;
                 sum = sortedList.get(i + 1);
             }
-
         }
         return counts == n ? sum : 0;
     }
@@ -174,7 +169,6 @@ public class Yatzy {
             return sum[0];
         } else
             return 0;
-
     }
 }
 
