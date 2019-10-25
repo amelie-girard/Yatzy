@@ -132,42 +132,37 @@ public class Yatzy {
         return 0;
     }
 
-    public static int smallStraight(int d1, int d2, int d3, int d4, int d5)
+    public int smallStraight()
     {
-        
-        int[] tallies;
-        tallies = new int[6];
-        tallies[d1-1] += 1;
-        tallies[d2-1] += 1;
-        tallies[d3-1] += 1;
-        tallies[d4-1] += 1;
-        tallies[d5-1] += 1;
-        if (tallies[0] == 1 &&
-            tallies[1] == 1 &&
-            tallies[2] == 1 &&
-            tallies[3] == 1 &&
-            tallies[4] == 1)
-            return 15;
-        return 0;
+        List<Integer> orderedList = dices.stream().sorted().collect(Collectors.toList());
+        if(orderedList.get(0) != 1) {
+            return 0;
+        }
+        return calculateSumIfFollowingDices(orderedList);
     }
 
-    public static int largeStraight(int d1, int d2, int d3, int d4, int d5)
-    {
-        int[] tallies;
-        tallies = new int[6];
-        tallies[d1-1] += 1;
-        tallies[d2-1] += 1;
-        tallies[d3-1] += 1;
-        tallies[d4-1] += 1;
-        tallies[d5-1] += 1;
-        if (tallies[1] == 1 &&
-            tallies[2] == 1 &&
-            tallies[3] == 1 &&
-            tallies[4] == 1
-            && tallies[5] == 1)
-            return 20;
-        return 0;
+    private int calculateSumIfFollowingDices(List<Integer> orderedList) {
+        int sum = 0;
+        for (int i = 0; i < orderedList.size() - 1; i++) {
+            if (orderedList.get(i) == (orderedList.get(i + 1) - 1)) {
+                sum += orderedList.get(i);
+            } else {
+                return 0;
+            }
+        }
+        sum += orderedList.get(orderedList.size() - 1);
+        return sum;
     }
+
+    public  int largeStraight()
+    {
+        List<Integer> orderedList = dices.stream().sorted().collect(Collectors.toList());
+        if(orderedList.get(0) != 2) {
+            return 0;
+        }
+        return calculateSumIfFollowingDices(orderedList);
+    }
+
 
     public static int fullHouse(int d1, int d2, int d3, int d4, int d5)
     {
