@@ -50,18 +50,14 @@ class YatzyTest {
     @Test
     void test_threes() {
         assertEquals(6, new Yatzy(buildDiceRolled(1, 2, 3, 2, 3)).score(CategoryEnum.THREES));
-        assertEquals(12,
-                new Yatzy(buildDiceRolled(2, 3, 3, 3, 3)).score(CategoryEnum.THREES));
+        assertEquals(12, new Yatzy(buildDiceRolled(2, 3, 3, 3, 3)).score(CategoryEnum.THREES));
     }
 
     @Test
     void fours_test() {
-        assertEquals(12,
-                new Yatzy(buildDiceRolled(4, 4, 4, 5, 5)).score(CategoryEnum.FOURS));
-        assertEquals(8,
-                new Yatzy(buildDiceRolled(4, 4, 5, 5, 5)).score(CategoryEnum.FOURS));
-        assertEquals(4,
-                new Yatzy(buildDiceRolled(4, 5, 5, 5, 5)).score(CategoryEnum.FOURS));
+        assertEquals(12, new Yatzy(buildDiceRolled(4, 4, 4, 5, 5)).score(CategoryEnum.FOURS));
+        assertEquals(8, new Yatzy(buildDiceRolled(4, 4, 5, 5, 5)).score(CategoryEnum.FOURS));
+        assertEquals(4, new Yatzy(buildDiceRolled(4, 5, 5, 5, 5)).score(CategoryEnum.FOURS));
     }
 
     @Test
@@ -122,7 +118,7 @@ class YatzyTest {
         assertEquals(0, new Yatzy(buildDiceRolled(1, 2, 2, 4, 5)).score(CategoryEnum.LARGE_STRAIGHT));
     }
 
-   @Test
+    @Test
     void fullHouse() {
         assertEquals(18, new Yatzy(buildDiceRolled(6, 2, 2, 2, 6)).score(CategoryEnum.FULL_HOUSE));
         assertEquals(0, new Yatzy(buildDiceRolled(2, 3, 4, 5, 6)).score(CategoryEnum.FULL_HOUSE));

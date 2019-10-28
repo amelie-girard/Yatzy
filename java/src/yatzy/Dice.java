@@ -4,11 +4,11 @@ public class Dice {
 
     private int number;
 
-    Dice(int number){
+    Dice(int number) {
         this.number = number;
     }
 
-    public int getNumber(){
+    public int getNumber() {
         return this.number;
     }
 
@@ -20,7 +20,7 @@ public class Dice {
         this.number = number;
     }
 
-    boolean isEqual(Dice dice){
+    boolean isEqual(Dice dice) {
         return this.number == dice.getNumber();
     }
 }

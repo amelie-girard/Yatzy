@@ -16,7 +16,7 @@ public class SimpleNumberCategory {
         return diceRolled.calculerNombreDeDesDistinct() == 1 ? 50 : 0;
     }
 
-    public SimpleNumberCategory(DiceRolled diceRolled){
+    public SimpleNumberCategory(DiceRolled diceRolled) {
         this.diceRolled = diceRolled;
     }
 

@@ -6,28 +6,28 @@ public class StraightCategory {
 
     private final DiceRolled diceRolled;
 
-    public StraightCategory(DiceRolled diceRolled){
+    public StraightCategory(DiceRolled diceRolled) {
         this.diceRolled = diceRolled;
     }
 
-    public int smallStraight() {
-        DiceRolled sortedDiceRolled = diceRolled.sort();
+    public int calculerPetiteSuite() {
+        DiceRolled sortedDiceRolled = diceRolled.trierParOdreCroissant();
         if (sortedDiceRolled.getDices().get(0).getNumber() != 1) {
             return 0;
         }
-        return diceRolled.calculateSumIfFollowingDices(sortedDiceRolled);
+        return diceRolled.calculerSommeSiLesDesSeSuivent(sortedDiceRolled);
     }
 
-    public int largeStraight() {
-        DiceRolled sortedDiceRolled = diceRolled.sort();
+    public int calculerGrandeSuite() {
+        DiceRolled sortedDiceRolled = diceRolled.trierParOdreCroissant();
         if (sortedDiceRolled.getDices().get(0).getNumber() != 2) {
             return 0;
         }
-        return diceRolled.calculateSumIfFollowingDices(sortedDiceRolled);
+        return diceRolled.calculerSommeSiLesDesSeSuivent(sortedDiceRolled);
     }
 
     public int calculerScorePourFull() {
-        DiceRolled sortedDiceRolled = diceRolled.sort();
+        DiceRolled sortedDiceRolled = diceRolled.trierParOdreCroissant();
         int numberOfDistinctDice = sortedDiceRolled.calculerNombreDeDesDistinct();
         NofKindCategory nofKindCategory = new NofKindCategory(diceRolled);
         if (numberOfDistinctDice == 2 && nofKindCategory.calculerScorePourCarre() == 0) {

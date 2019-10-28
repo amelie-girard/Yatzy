@@ -6,7 +6,7 @@ public class NofKindCategory {
 
     private final DiceRolled diceRolled;
 
-    public NofKindCategory(DiceRolled diceRolled){
+    public NofKindCategory(DiceRolled diceRolled) {
         this.diceRolled = diceRolled;
     }
 

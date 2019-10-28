@@ -1,11 +1,12 @@
 package yatzy;
+
 import java.util.List;
 
 public class DiceRolled {
 
     private final List<Dice> dices;
 
-    DiceRolled(List<Dice> dices){
+    DiceRolled(List<Dice> dices) {
         this.dices = dices;
     }
 
@@ -13,11 +14,12 @@ public class DiceRolled {
         return dices;
     }
 
-    public int calculerSommeDeTousLesDes(){
-        int []sum = {0};
+    public int calculerSommeDeTousLesDes() {
+        int[] sum = { 0 };
         dices.forEach(dice -> sum[0] += dice.getNumber());
         return sum[0];
     }
+
     public int calculerLaSommeDesDesDeNombreN(int i) {
         int[] sum = { 0 };
         dices.stream().filter(dice -> dice.getNumber() == i).forEach(dice -> sum[0] += dice.getNumber());
@@ -25,7 +27,7 @@ public class DiceRolled {
     }
 
     public boolean trouverPaireDeN(int n) {
-        if(n <= 0)
+        if (n <= 0)
             return false;
         int[] total = { 0 };
         dices.forEach(dice -> {
@@ -42,7 +44,7 @@ public class DiceRolled {
         }
     }
 
-    public DiceRolled sort() {
+    public DiceRolled trierParOdreCroissant() {
         for (int i = 0; i < dices.size() - 1; i++) {
             for (int j = i + 1; j < dices.size(); j++) {
                 if (dices.get(j).isLowerThan(dices.get(i))) {
@@ -57,7 +59,7 @@ public class DiceRolled {
 
     public int additionnerNDesDeMemeNombre(int n) {
         int counts = 1;
-        DiceRolled sortedDiceRolled = sort();
+        DiceRolled sortedDiceRolled = trierParOdreCroissant();
         int sum = sortedDiceRolled.getDices().get(0).getNumber();
         for (int i = 0; i < sortedDiceRolled.getDices().size() - 1; i++) {
             if (counts == n) {
@@ -67,16 +69,17 @@ public class DiceRolled {
                 sum += sortedDiceRolled.getDices().get(i + 1).getNumber();
             } else {
                 counts = 1;
-                sum =  sortedDiceRolled.getDices().get(i + 1).getNumber();
+                sum = sortedDiceRolled.getDices().get(i + 1).getNumber();
             }
         }
         return counts == n ? sum : 0;
     }
 
-    public int calculateSumIfFollowingDices(DiceRolled sortedDiceRolled) {
+    public int calculerSommeSiLesDesSeSuivent(DiceRolled sortedDiceRolled) {
         int sum = 0;
         for (int i = 0; i < sortedDiceRolled.getDices().size() - 1; i++) {
-            if (sortedDiceRolled.getDices().get(i).getNumber() == (sortedDiceRolled.getDices().get(i + 1).getNumber() - 1)) {
+            if (sortedDiceRolled.getDices().get(i).getNumber() == (sortedDiceRolled.getDices().get(i + 1).getNumber()
+                    - 1)) {
                 sum += sortedDiceRolled.getDices().get(i).getNumber();
             } else {
                 return 0;
@@ -86,11 +89,11 @@ public class DiceRolled {
         return sum;
     }
 
-    public int calculerNombreDeDesDistinct(){
+    public int calculerNombreDeDesDistinct() {
         int total = 1;
         for (int i = 0; i < dices.size() - 1; i++) {
-            if(!dices.get(i).isEqual(dices.get(i + 1))){
-                total ++;
+            if (!dices.get(i).isEqual(dices.get(i + 1))) {
+                total++;
             }
         }
         return total;
