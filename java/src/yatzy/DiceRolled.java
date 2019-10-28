@@ -29,12 +29,8 @@ public class DiceRolled {
     public boolean trouverPaireDeN(int n) {
         if (n <= 0)
             return false;
-        int[] total = { 0 };
-        dices.forEach(dice -> {
-            if (dice.getNumber() == n)
-                total[0]++;
-        });
-        return total[0] >= 2;
+        long total = dices.stream().filter(dice -> dice.getNumber() == n).count();
+        return total >= 2;
     }
 
     public void enleverDes(Dice dice) {
