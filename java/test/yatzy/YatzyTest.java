@@ -12,20 +12,20 @@ class YatzyTest {
     @Test
     void chance_scores_sum_of_all_dice() {
         int expected = 15;
-        Yatzy yatzy_1 = new Yatzy(2, 3, 4, 5, 1);
+        Yatzy yatzy_1 = new Yatzy(buildDiceRolled(2, 3, 4, 5, 1));
         int actual = yatzy_1.chance();
         assertEquals(expected, actual);
-        Yatzy yatzy_2 = new Yatzy(3, 3, 4, 5, 1);
+        Yatzy yatzy_2 = new Yatzy(buildDiceRolled(3, 3, 4, 5, 1));
         assertEquals(16, yatzy_2.chance());
     }
 
     @Test
     void yatzy_scores_50() {
         int expected = 50;
-        int actual = new Yatzy(4, 4, 4, 4, 4).yatzy();
+        int actual = new Yatzy(buildDiceRolled(4, 4, 4, 4, 4)).yatzy();
         assertEquals(expected, actual);
-        assertEquals(50, new Yatzy(6, 6, 6, 6, 6).yatzy());
-        assertEquals(0, new Yatzy(6, 6, 6, 6, 3).yatzy());
+        assertEquals(50, new Yatzy(buildDiceRolled(6, 6, 6, 6, 6)).yatzy());
+        assertEquals(0, new Yatzy(buildDiceRolled(6, 6, 6, 6, 3)).yatzy());
     }
 
     @Test

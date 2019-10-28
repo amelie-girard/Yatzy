@@ -13,9 +13,6 @@ public class Yatzy {
     private List<Integer> dices;
     private DiceRolled diceRolled;
 
-    public Yatzy(int d1, int d2, int d3, int d4, int d5) {
-        dices = Arrays.asList(d1, d2, d3, d4, d5);
-    }
 
     public Yatzy(DiceRolled diceRolled) {
         this.diceRolled = diceRolled;
@@ -27,8 +24,7 @@ public class Yatzy {
 
     public int yatzy() {
         //Si la taille de distinctDiceest egale à 1 cela signifie que tous les dés sont égaux
-        List<Integer> distinctDice = dices.stream().distinct().collect(Collectors.toList());
-        return distinctDice.size() == 1 ? 50 : 0;
+        return diceRolled.calculerNombreDeDesDistinct() == 1 ? 50 : 0;
     }
 
     int calculerScoreSiCategorieSimple(DiceNumberEnum number) {
