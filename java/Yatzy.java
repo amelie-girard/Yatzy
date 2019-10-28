@@ -28,28 +28,18 @@ public class Yatzy {
         return distinctDice.size() == 1 ? 50 : 0;
     }
 
-    int calculerLaSommeDesDesDeNombreUn() {
-        return diceRolled.calculerLaSommeDesDesDeNombreN(DiceNumberEnum.UN.getValue());
-    }
+    int calculerScoreSiCategorieSimple(DiceNumberEnum number){
+        SimpleNumberCategory simpleNumberCategory = new SimpleNumberCategory(diceRolled);
+        switch(number) {
+        case UN : return simpleNumberCategory.calculerLaSommeDesDesDeNombreUn();
+        case DEUX : return simpleNumberCategory.calculerLaSommeDesDesDeNombreDeux();
+        case TROIS : return simpleNumberCategory.calculerLaSommeDesDesDeNombreTrois();
+        case QUATRE: return simpleNumberCategory.calculerLaSommeDesDesDeNombreQuatre();
+        case CINQ : return simpleNumberCategory.calculerLaSommeDesDesDeNombreCinq();
+        case SIX : return simpleNumberCategory.calculerLaSommeDesDesDeNombreSix();
+        default: return 0;
+        }
 
-    int calculerLaSommeDesDesDeNombreDeux() {
-        return diceRolled.calculerLaSommeDesDesDeNombreN(DiceNumberEnum.DEUX.getValue());
-    }
-
-    int calculerLaSommeDesDesDeNombreTrois() {
-        return diceRolled.calculerLaSommeDesDesDeNombreN(DiceNumberEnum.TROIS.getValue());
-    }
-
-    int calculerLaSommeDesDesDeNombreQuatre() {
-        return diceRolled.calculerLaSommeDesDesDeNombreN(DiceNumberEnum.QUATRE.getValue());
-    }
-
-    int calculerLaSommeDesDesDeNombreCinq() {
-        return diceRolled.calculerLaSommeDesDesDeNombreN(DiceNumberEnum.CINQ.getValue());
-    }
-
-    int calculerLaSommeDesDesDeNombreSix() {
-        return diceRolled.calculerLaSommeDesDesDeNombreN(DiceNumberEnum.SIX.getValue());
     }
 
     int scorePair() {

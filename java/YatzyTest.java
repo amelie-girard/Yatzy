@@ -28,10 +28,10 @@ public class YatzyTest {
 
     @Test
     public void test_1s() {
-        assertTrue(new Yatzy(buildDiceRolled(1, 2, 3, 4, 5)).calculerLaSommeDesDesDeNombreUn() == 1);
-        assertEquals(2, new Yatzy(buildDiceRolled(1, 2, 1, 4, 5)).calculerLaSommeDesDesDeNombreUn());
-        assertEquals(0, new Yatzy(buildDiceRolled(6, 2, 2, 4, 5)).calculerLaSommeDesDesDeNombreUn());
-        assertEquals(4, new Yatzy(buildDiceRolled(1, 2, 1, 1, 1)).calculerLaSommeDesDesDeNombreUn());
+        assertTrue(new Yatzy(buildDiceRolled(1, 2, 3, 4, 5)).calculerScoreSiCategorieSimple(DiceNumberEnum.UN) == 1);
+        assertEquals(2, new Yatzy(buildDiceRolled(1, 2, 1, 4, 5)).calculerScoreSiCategorieSimple(DiceNumberEnum.UN));
+        assertEquals(0, new Yatzy(buildDiceRolled(6, 2, 2, 4, 5)).calculerScoreSiCategorieSimple(DiceNumberEnum.UN));
+        assertEquals(4, new Yatzy(buildDiceRolled(1, 2, 1, 1, 1)).calculerScoreSiCategorieSimple(DiceNumberEnum.UN));
     }
 
     private DiceRolled buildDiceRolled(int a, int b, int c, int d, int e) {
@@ -40,35 +40,39 @@ public class YatzyTest {
 
     @Test
     public void test_2s() {
-        assertEquals(4, new Yatzy(buildDiceRolled(1, 2, 3, 2, 6)).calculerLaSommeDesDesDeNombreDeux());
-        assertEquals(10, new Yatzy(buildDiceRolled(2, 2, 2, 2, 2)).calculerLaSommeDesDesDeNombreDeux());
+        assertEquals(4, new Yatzy(buildDiceRolled(1, 2, 3, 2, 6)).calculerScoreSiCategorieSimple(DiceNumberEnum.DEUX));
+        assertEquals(10, new Yatzy(buildDiceRolled(2, 2, 2, 2, 2)).calculerScoreSiCategorieSimple(DiceNumberEnum.DEUX));
     }
 
     @Test
     public void test_threes() {
-        assertEquals(6, new Yatzy(buildDiceRolled(1, 2, 3, 2, 3)).calculerLaSommeDesDesDeNombreTrois());
-        assertEquals(12, new Yatzy(buildDiceRolled(2, 3, 3, 3, 3)).calculerLaSommeDesDesDeNombreTrois());
+        assertEquals(6, new Yatzy(buildDiceRolled(1, 2, 3, 2, 3)).calculerScoreSiCategorieSimple(DiceNumberEnum.TROIS));
+        assertEquals(12,
+                new Yatzy(buildDiceRolled(2, 3, 3, 3, 3)).calculerScoreSiCategorieSimple(DiceNumberEnum.TROIS));
     }
 
     @Test
     public void fours_test() {
-        assertEquals(12, new Yatzy(buildDiceRolled(4, 4, 4, 5, 5)).calculerLaSommeDesDesDeNombreQuatre());
-        assertEquals(8, new Yatzy(buildDiceRolled(4, 4, 5, 5, 5)).calculerLaSommeDesDesDeNombreQuatre());
-        assertEquals(4, new Yatzy(buildDiceRolled(4, 5, 5, 5, 5)).calculerLaSommeDesDesDeNombreQuatre());
+        assertEquals(12,
+                new Yatzy(buildDiceRolled(4, 4, 4, 5, 5)).calculerScoreSiCategorieSimple(DiceNumberEnum.QUATRE));
+        assertEquals(8,
+                new Yatzy(buildDiceRolled(4, 4, 5, 5, 5)).calculerScoreSiCategorieSimple(DiceNumberEnum.QUATRE));
+        assertEquals(4,
+                new Yatzy(buildDiceRolled(4, 5, 5, 5, 5)).calculerScoreSiCategorieSimple(DiceNumberEnum.QUATRE));
     }
 
     @Test
     public void fives() {
-        assertEquals(10, new Yatzy(buildDiceRolled(4, 4, 4, 5, 5)).calculerLaSommeDesDesDeNombreCinq());
-        assertEquals(15, new Yatzy(buildDiceRolled(4, 4, 5, 5, 5)).calculerLaSommeDesDesDeNombreCinq());
-        assertEquals(20, new Yatzy(buildDiceRolled(4, 5, 5, 5, 5)).calculerLaSommeDesDesDeNombreCinq());
+        assertEquals(10, new Yatzy(buildDiceRolled(4, 4, 4, 5, 5)).calculerScoreSiCategorieSimple(DiceNumberEnum.CINQ));
+        assertEquals(15, new Yatzy(buildDiceRolled(4, 4, 5, 5, 5)).calculerScoreSiCategorieSimple(DiceNumberEnum.CINQ));
+        assertEquals(20, new Yatzy(buildDiceRolled(4, 5, 5, 5, 5)).calculerScoreSiCategorieSimple(DiceNumberEnum.CINQ));
     }
 
     @Test
     public void sixes_test() {
-        assertEquals(0, new Yatzy(buildDiceRolled(4, 4, 4, 5, 5)).calculerLaSommeDesDesDeNombreSix());
-        assertEquals(6, new Yatzy(buildDiceRolled(4, 4, 6, 5, 5)).calculerLaSommeDesDesDeNombreSix());
-        assertEquals(18, new Yatzy(buildDiceRolled(6, 5, 6, 6, 5)).calculerLaSommeDesDesDeNombreSix());
+        assertEquals(0, new Yatzy(buildDiceRolled(4, 4, 4, 5, 5)).calculerScoreSiCategorieSimple(DiceNumberEnum.SIX));
+        assertEquals(6, new Yatzy(buildDiceRolled(4, 4, 6, 5, 5)).calculerScoreSiCategorieSimple(DiceNumberEnum.SIX));
+        assertEquals(18, new Yatzy(buildDiceRolled(6, 5, 6, 6, 5)).calculerScoreSiCategorieSimple(DiceNumberEnum.SIX));
     }
 
     @Test
