@@ -53,11 +53,12 @@ public class Yatzy {
         return numberOfNs(DiceNumberEnum.SIX.getNumber());
     }
 
-    public int score_pair() {
+    public int scorePair() {
         List<Integer> sortedList = dices.stream().sorted().collect(Collectors.toList());
         for (int i = sortedList.size() - 1; i > 0; i--) {
-            if (findPairOfN(sortedList.get(i)))
+            if (findPairOfN(sortedList.get(i))){
                 return sortedList.get(i) * 2;
+            }
         }
         return 0;
     }
@@ -107,7 +108,7 @@ public class Yatzy {
         for (int i = 0; i < sortedList.size() - 1; i++) {
             if (counts == n) {
                 return sum;
-            } else if ((sortedList.get(i) == sortedList.get(i + 1))) {
+            } else if ((sortedList.get(i).equals(sortedList.get(i + 1)))) {
                 counts++;
                 sum += sortedList.get(i + 1);
             } else {

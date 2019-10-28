@@ -67,10 +67,10 @@ public class YatzyTest {
 
     @Test
     public void one_pair() {
-        assertEquals(6, new Yatzy(3,4,3,5,6).score_pair());
-        assertEquals(10, new Yatzy(5,3,3,3,5).score_pair());
-        assertEquals(12, new Yatzy(5,3,6,6,5).score_pair());
-        assertEquals(0, new Yatzy(1,2,3,4,5).score_pair());
+        assertEquals(6, new Yatzy(3,4,3,5,6).scorePair());
+        assertEquals(10, new Yatzy(5,3,3,3,5).scorePair());
+        assertEquals(12, new Yatzy(5,3,6,6,5).scorePair());
+        assertEquals(0, new Yatzy(1,2,3,4,5).scorePair());
     }
 
     @Test
@@ -93,13 +93,14 @@ public class YatzyTest {
         assertEquals(12, new Yatzy(3,3,3,3,5).fourOfaKind());
         assertEquals(20, new Yatzy(5,5,5,4,5).fourOfaKind());
         assertEquals(9, new Yatzy(3,3,3,3,3).threeOfaKind());
+        assertEquals(9, new Yatzy(3,3,1,3,2).threeOfaKind());
     }
 
     @Test
     public void smallStraight() {
         assertEquals(15, new Yatzy(1,2,3,4,5).smallStraight());
         assertEquals(15, new Yatzy(2,3,4,5,1).smallStraight());
-        assertEquals(0, new Yatzy(1,2,2,4,5).smallStraight());
+        assertEquals(0, new Yatzy(2,2,3,4,5).smallStraight());
     }
 
     @Test
