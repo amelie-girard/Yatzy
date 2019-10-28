@@ -1,12 +1,12 @@
-public class Dice {
+class Dice {
 
     private final int number;
 
-    public Dice(int number){
+    Dice(int number){
         this.number = number;
     }
 
-    public int getNumber(){
+    int getNumber(){
         return this.number;
     }
 }

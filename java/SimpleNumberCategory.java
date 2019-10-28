@@ -1,8 +1,8 @@
-public class SimpleNumberCategory {
+class SimpleNumberCategory {
 
     private final DiceRolled diceRolled;
 
-    public SimpleNumberCategory(DiceRolled diceRolled){
+    SimpleNumberCategory(DiceRolled diceRolled){
         this.diceRolled = diceRolled;
     }
 

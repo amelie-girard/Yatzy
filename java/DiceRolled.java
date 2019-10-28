@@ -1,6 +1,6 @@
 import java.util.List;
 
-public class DiceRolled {
+class DiceRolled {
 
     private final List<Dice> dices;
 
