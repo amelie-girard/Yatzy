@@ -55,7 +55,7 @@ public class DiceRolled {
         return new DiceRolled(dices);
     }
 
-    int additionnerNDesDeMemeNombre(int n) {
+    public int additionnerNDesDeMemeNombre(int n) {
         int counts = 1;
         DiceRolled sortedDiceRolled = sort();
         int sum = sortedDiceRolled.getDices().get(0).getNumber();
@@ -86,7 +86,7 @@ public class DiceRolled {
         return sum;
     }
 
-    int calculerNombreDeDesDistinct(){
+    public int calculerNombreDeDesDistinct(){
         int total = 1;
         for (int i = 0; i < dices.size() - 1; i++) {
             if(!dices.get(i).isEqual(dices.get(i + 1))){

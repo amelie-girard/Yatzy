@@ -1,91 +1,45 @@
 package yatzy;
 
-import yatzy.scoringcategory.PairCategory;
-import yatzy.scoringcategory.SimpleNumberCategory;
-import yatzy.scoringcategory.StraightCategory;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
+import yatzy.scoringcategory.*;
 
 public class Yatzy {
 
-    private List<Integer> dices;
     private DiceRolled diceRolled;
+    private SimpleNumberCategory simpleNumberCategory;
+    private NofKindCategory nofKindCategory;
+    private PairCategory pairCategory;
+    private StraightCategory straightCategory;
 
 
     public Yatzy(DiceRolled diceRolled) {
         this.diceRolled = diceRolled;
+        simpleNumberCategory = new SimpleNumberCategory(diceRolled);
+        nofKindCategory = new NofKindCategory(diceRolled);
+        pairCategory = new PairCategory(diceRolled);
+        straightCategory = new StraightCategory(diceRolled);
     }
 
-    int chance() {
-       return diceRolled.calculerSommeDeTousLesDes();
-    }
-
-    public int yatzy() {
-        //Si la taille de distinctDiceest egale à 1 cela signifie que tous les dés sont égaux
-        return diceRolled.calculerNombreDeDesDistinct() == 1 ? 50 : 0;
-    }
-
-    int calculerScoreSiCategorieSimple(DiceNumberEnum number) {
-        SimpleNumberCategory simpleNumberCategory = new SimpleNumberCategory(diceRolled);
-        switch (number) {
-        case UN:
-            return simpleNumberCategory.calculerLaSommeDesDesDeNombreUn();
-        case DEUX:
-            return simpleNumberCategory.calculerLaSommeDesDesDeNombreDeux();
-        case TROIS:
-            return simpleNumberCategory.calculerLaSommeDesDesDeNombreTrois();
-        case QUATRE:
-            return simpleNumberCategory.calculerLaSommeDesDesDeNombreQuatre();
-        case CINQ:
-            return simpleNumberCategory.calculerLaSommeDesDesDeNombreCinq();
-        case SIX:
-            return simpleNumberCategory.calculerLaSommeDesDesDeNombreSix();
-        default:
-            return 0;
+    int score(CategoryEnum catgoryEnum){
+        switch (catgoryEnum){
+        case CHANCE: return simpleNumberCategory.chance();
+        case YATZY: return simpleNumberCategory.yatzy();
+        case ONES: return simpleNumberCategory.calculerLaSommeDesDesDeNombreUn();
+        case TWOS: return simpleNumberCategory.calculerLaSommeDesDesDeNombreDeux();
+        case THREES: return simpleNumberCategory.calculerLaSommeDesDesDeNombreTrois();
+        case FOURS: return simpleNumberCategory.calculerLaSommeDesDesDeNombreQuatre();
+        case FIVES: return simpleNumberCategory.calculerLaSommeDesDesDeNombreCinq();
+        case SIXES: return simpleNumberCategory.calculerLaSommeDesDesDeNombreSix();
+        case ONE_PAIR: return pairCategory.calculerScorePourUnePaire();
+        case TWO_PAIR:  return pairCategory.calculerScorePourDeuxPaires();
+        case FOUR_OF_KIND:  return nofKindCategory.calculerScorePourCarre();
+        case THREE_OF_KIND:  return nofKindCategory.calculerScorePourBrelan();
+        case SMALL_STRAIGHT: return straightCategory.smallStraight();
+        case LARGE_STRAIGHT:   return straightCategory.largeStraight();
+        case FULL_HOUSE: return straightCategory.calculerScorePourFull();
+        default: return 0;
         }
-
     }
 
-    int calculerScorePourUnePaire() {
-        PairCategory pairCategory = new PairCategory(diceRolled);
-        return pairCategory.calculerScorePourUnePaire();
-    }
-
-    int calculerScorePourDeuxPaires() {
-        PairCategory pairCategory = new PairCategory(diceRolled);
-        return pairCategory.calculerScorePourDeuxPaires();
-    }
-
-    int calculerScorePourCarre() {
-        return diceRolled.additionnerNDesDeMemeNombre(4);
-    }
-
-    int calculerScorePourBrelan() {
-        return diceRolled.additionnerNDesDeMemeNombre(3);
-    }
-
-    int calculerScorePourPetiteSuite() {
-        StraightCategory straightCategory = new StraightCategory(diceRolled);
-        return straightCategory.smallStraight();
-    }
-
-    int calculerScorePourGrandeSuite() {
-        StraightCategory straightCategory = new StraightCategory(diceRolled);
-        return straightCategory.largeStraight();
-    }
-
-    int calculerScorePourFull() {
-        DiceRolled sortedDiceRolled = diceRolled.sort();
-        int numberOfDistinctDice = sortedDiceRolled.calculerNombreDeDesDistinct();
-        if (numberOfDistinctDice == 2 && calculerScorePourCarre() == 0) {
-            int[] sum = { 0 };
-            diceRolled.getDices().forEach(dice -> sum[0] += dice.getNumber());
-            return sum[0];
-        } else
-            return 0;
-    }
 }
 
 
