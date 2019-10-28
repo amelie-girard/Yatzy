@@ -4,12 +4,7 @@ import java.util.stream.Collectors;
 
 public class Yatzy {
 
-    private static final int ONE = 1;
-    private static final int TWO = 2;
-    private static final int THREE = 3;
-    private static final int FOUR = 4;
-    private static final int FIVE = 5;
-    private static final int SIX = 6;
+
     private List<Integer> dices;
 
     public Yatzy(int d1, int d2, int d3, int d4, int d5) {
@@ -29,7 +24,7 @@ public class Yatzy {
     }
 
     public int ones() {
-        return numberOfNs(ONE);
+        return numberOfNs(DiceNumberEnum.UN.getNumber());
     }
 
     private int numberOfNs(int i) {
@@ -39,23 +34,23 @@ public class Yatzy {
     }
 
     public int twos() {
-        return numberOfNs(TWO);
+        return numberOfNs(DiceNumberEnum.DEUX.getNumber());
     }
 
     public int threes() {
-        return numberOfNs(THREE);
+        return numberOfNs(DiceNumberEnum.TROIS.getNumber());
     }
 
     public int fours() {
-        return numberOfNs(FOUR);
+        return numberOfNs(DiceNumberEnum.QUATRE.getNumber());
     }
 
     public int fives() {
-        return numberOfNs(FIVE);
+        return numberOfNs(DiceNumberEnum.CINQ.getNumber());
     }
 
     public int sixes() {
-        return numberOfNs(SIX);
+        return numberOfNs(DiceNumberEnum.SIX.getNumber());
     }
 
     public int score_pair() {
@@ -76,7 +71,7 @@ public class Yatzy {
         return total[0] >= 2;
     }
 
-    public int twoPairs() {
+     int twoPairs() {
         int nbPair = 0;
         int sum = 0;
         List<Integer> sortedList = dices.stream().sorted().collect(Collectors.toList());
@@ -97,7 +92,7 @@ public class Yatzy {
         }
     }
 
-    public int fourOfaKind() {
+     int fourOfaKind() {
         int diffDices = dices.stream().distinct().collect(Collectors.toList()).size();
         List<Integer> sortedList = dices.stream().sorted().collect(Collectors.toList());
         if (diffDices > 2) {
@@ -123,7 +118,7 @@ public class Yatzy {
         return counts == n ? sum : 0;
     }
 
-    public int threeOfaKind() {
+    int threeOfaKind() {
         int diffDices = dices.stream().distinct().collect(Collectors.toList()).size();
         List<Integer> sortedList = dices.stream().sorted().collect(Collectors.toList());
         if (diffDices > 3) {
