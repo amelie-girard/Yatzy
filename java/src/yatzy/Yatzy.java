@@ -21,7 +21,7 @@ public class Yatzy {
         this.diceRolled = diceRolled;
     }
 
-    public int chance() {
+    int chance() {
         int[] total = { 0 };
         dices.forEach(dice -> total[0] += dice);
         return total[0];
@@ -59,41 +59,14 @@ public class Yatzy {
 
 
      int fourOfaKind() {
-        int diffDices = dices.stream().distinct().collect(Collectors.toList()).size();
-        List<Integer> sortedList = dices.stream().sorted().collect(Collectors.toList());
-        if (diffDices > 2) {
-            return 0;
-        }
-        return nOfaKind(sortedList, 4);
-    }
-
-    private int nOfaKind(List<Integer> sortedList, int n) {
-        int counts = 1;
-        int sum = sortedList.get(0);
-        for (int i = 0; i < sortedList.size() - 1; i++) {
-            if (counts == n) {
-                return sum;
-            } else if ((sortedList.get(i).equals(sortedList.get(i + 1)))) {
-                counts++;
-                sum += sortedList.get(i + 1);
-            } else {
-                counts = 1;
-                sum = sortedList.get(i + 1);
-            }
-        }
-        return counts == n ? sum : 0;
+        return diceRolled.additionnerNDesDeMemeNombre(4);
     }
 
     int threeOfaKind() {
-        int diffDices = dices.stream().distinct().collect(Collectors.toList()).size();
-        List<Integer> sortedList = dices.stream().sorted().collect(Collectors.toList());
-        if (diffDices > 3) {
-            return 0;
-        }
-        return nOfaKind(sortedList, 3);
+        return diceRolled.additionnerNDesDeMemeNombre(3);
     }
 
-    public int smallStraight() {
+    int smallStraight() {
         List<Integer> orderedList = dices.stream().sorted().collect(Collectors.toList());
         if (orderedList.get(0) != 1) {
             return 0;
@@ -114,7 +87,7 @@ public class Yatzy {
         return sum;
     }
 
-    public int largeStraight() {
+    int largeStraight() {
         List<Integer> orderedList = dices.stream().sorted().collect(Collectors.toList());
         if (orderedList.get(0) != 2) {
             return 0;
@@ -122,7 +95,7 @@ public class Yatzy {
         return calculateSumIfFollowingDices(orderedList);
     }
 
-    public int fullHouse() {
+    int fullHouse() {
         List<Integer> distinctDice = dices.stream().distinct().collect(Collectors.toList());
         if (distinctDice.size() == 2 && fourOfaKind() == 0) {
             int[] sum = { 0 };

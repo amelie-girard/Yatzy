@@ -49,4 +49,22 @@ public class DiceRolled {
         }
         return new DiceRolled(dices);
     }
+
+    public int additionnerNDesDeMemeNombre(int n) {
+        int counts = 1;
+        DiceRolled sortedDiceRolled = sort();
+        int sum = sortedDiceRolled.getDices().get(0).getNumber();
+        for (int i = 0; i < sortedDiceRolled.getDices().size() - 1; i++) {
+            if (counts == n) {
+                return sum;
+            } else if ((sortedDiceRolled.getDices().get(i).isEqual(sortedDiceRolled.getDices().get(i + 1)))) {
+                counts++;
+                sum += sortedDiceRolled.getDices().get(i + 1).getNumber();
+            } else {
+                counts = 1;
+                sum =  sortedDiceRolled.getDices().get(i + 1).getNumber();
+            }
+        }
+        return counts == n ? sum : 0;
+    }
 }

@@ -19,4 +19,8 @@ public class Dice {
     public void setNumer(int number) {
         this.number = number;
     }
+
+    boolean isEqual(Dice dice){
+        return this.number == dice.getNumber();
+    }
 }
