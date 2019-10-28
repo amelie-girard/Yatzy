@@ -6,9 +6,14 @@ public class Yatzy {
 
 
     private List<Integer> dices;
+    private DiceRolled diceRolled;
 
     public Yatzy(int d1, int d2, int d3, int d4, int d5) {
         dices = Arrays.asList(d1, d2, d3, d4, d5);
+    }
+
+    public Yatzy(DiceRolled diceRolled){
+        this.diceRolled = diceRolled;
     }
 
     public int chance() {
@@ -24,7 +29,7 @@ public class Yatzy {
     }
 
     public int ones() {
-        return numberOfNs(DiceNumberEnum.UN.getNumber());
+        return diceRolled.calculerLaSommeDesDesDeNombreN(DiceNumberEnum.UN.getValue());
     }
 
     private int numberOfNs(int i) {
@@ -34,23 +39,23 @@ public class Yatzy {
     }
 
     public int twos() {
-        return numberOfNs(DiceNumberEnum.DEUX.getNumber());
+        return diceRolled.calculerLaSommeDesDesDeNombreN(DiceNumberEnum.DEUX.getValue());
     }
 
     public int threes() {
-        return numberOfNs(DiceNumberEnum.TROIS.getNumber());
+        return diceRolled.calculerLaSommeDesDesDeNombreN(DiceNumberEnum.TROIS.getValue());
     }
 
     public int fours() {
-        return numberOfNs(DiceNumberEnum.QUATRE.getNumber());
+        return diceRolled.calculerLaSommeDesDesDeNombreN(DiceNumberEnum.QUATRE.getValue());
     }
 
     public int fives() {
-        return numberOfNs(DiceNumberEnum.CINQ.getNumber());
+        return diceRolled.calculerLaSommeDesDesDeNombreN(DiceNumberEnum.CINQ.getValue());
     }
 
     public int sixes() {
-        return numberOfNs(DiceNumberEnum.SIX.getNumber());
+        return diceRolled.calculerLaSommeDesDesDeNombreN(DiceNumberEnum.SIX.getValue());
     }
 
     public int scorePair() {

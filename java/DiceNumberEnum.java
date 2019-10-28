@@ -7,13 +7,13 @@ public enum DiceNumberEnum {
     CINQ(5),
     SIX(6);
 
-    private int number;
+    private int value;
 
     DiceNumberEnum(int number) {
-        this.number = number;
+        this.value = number;
     }
 
-    public int getNumber(){
-        return number;
+    public int getValue(){
+        return value;
     }
 }

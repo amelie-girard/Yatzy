@@ -4,11 +4,14 @@ public class DiceRolled {
 
     private final List<Dice> dices;
 
-    public DiceRolled(List<Dice> dices){
+    DiceRolled(List<Dice> dices){
         this.dices = dices;
     }
 
-    public List<Dice> getDices() {
-        return dices;
+    int calculerLaSommeDesDesDeNombreN(int i) {
+        int[] sum = { 0 };
+        dices.stream().filter(dice -> dice.getNumber() == i).forEach(dice -> sum[0] += dice.getNumber());
+        return sum[0];
     }
+
 }
