@@ -7,7 +7,7 @@ import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class YatzyTest {
+class YatzyTest {
 
     @Test
     void chance_scores_sum_of_all_dice() {
@@ -93,38 +93,38 @@ public class YatzyTest {
 
     @Test
     void three_of_a_kind() {
-        assertEquals(9, new Yatzy(buildDiceRolled(3, 3, 3, 4, 5)).threeOfaKind());
-        assertEquals(15, new Yatzy(buildDiceRolled(5, 3, 5, 4, 5)).threeOfaKind());
-        assertEquals(9, new Yatzy(buildDiceRolled(3, 3, 3, 3, 5)).threeOfaKind());
-        assertEquals(0, new Yatzy(buildDiceRolled(1, 3, 2, 3, 5)).threeOfaKind());
+        assertEquals(9, new Yatzy(buildDiceRolled(3, 3, 3, 4, 5)).calculerScorePourBrelan());
+        assertEquals(15, new Yatzy(buildDiceRolled(5, 3, 5, 4, 5)).calculerScorePourBrelan());
+        assertEquals(9, new Yatzy(buildDiceRolled(3, 3, 3, 3, 5)).calculerScorePourBrelan());
+        assertEquals(0, new Yatzy(buildDiceRolled(1, 3, 2, 3, 5)).calculerScorePourBrelan());
     }
 
     @Test
     void four_of_a_knd() {
-        assertEquals(12, new Yatzy(buildDiceRolled(3, 3, 3, 3, 5)).fourOfaKind());
-        assertEquals(20, new Yatzy(buildDiceRolled(5, 5, 5, 4, 5)).fourOfaKind());
-        assertEquals(9, new Yatzy(buildDiceRolled(3, 3, 3, 3, 3)).threeOfaKind());
-        assertEquals(9, new Yatzy(buildDiceRolled(3, 3, 1, 3, 2)).threeOfaKind());
+        assertEquals(12, new Yatzy(buildDiceRolled(3, 3, 3, 3, 5)).calculerScorePourCarre());
+        assertEquals(20, new Yatzy(buildDiceRolled(5, 5, 5, 4, 5)).calculerScorePourCarre());
+        assertEquals(9, new Yatzy(buildDiceRolled(3, 3, 3, 3, 3)).calculerScorePourBrelan());
+        assertEquals(9, new Yatzy(buildDiceRolled(3, 3, 1, 3, 2)).calculerScorePourBrelan());
     }
 
     @Test
     void smallStraight() {
-        assertEquals(15, new Yatzy(buildDiceRolled(1, 2, 3, 4, 5)).smallStraight());
-        assertEquals(15, new Yatzy(buildDiceRolled(2, 3, 4, 5, 1)).smallStraight());
-        assertEquals(0, new Yatzy(buildDiceRolled(2, 2, 3, 4, 5)).smallStraight());
+        assertEquals(15, new Yatzy(buildDiceRolled(1, 2, 3, 4, 5)).calculerScorePourPetiteSuite());
+        assertEquals(15, new Yatzy(buildDiceRolled(2, 3, 4, 5, 1)).calculerScorePourPetiteSuite());
+        assertEquals(0, new Yatzy(buildDiceRolled(2, 2, 3, 4, 5)).calculerScorePourPetiteSuite());
     }
 
     @Test
     void largeStraight() {
-        assertEquals(20, new Yatzy(buildDiceRolled(6, 2, 3, 4, 5)).largeStraight());
-        assertEquals(20, new Yatzy(buildDiceRolled(2, 3, 4, 5, 6)).largeStraight());
-        assertEquals(0, new Yatzy(buildDiceRolled(1, 2, 2, 4, 5)).largeStraight());
+        assertEquals(20, new Yatzy(buildDiceRolled(6, 2, 3, 4, 5)).calculerScorePourGrandeSuite());
+        assertEquals(20, new Yatzy(buildDiceRolled(2, 3, 4, 5, 6)).calculerScorePourGrandeSuite());
+        assertEquals(0, new Yatzy(buildDiceRolled(1, 2, 2, 4, 5)).calculerScorePourGrandeSuite());
     }
 
    @Test
     void fullHouse() {
-        assertEquals(18, new Yatzy(buildDiceRolled(6, 2, 2, 2, 6)).fullHouse());
-        assertEquals(0, new Yatzy(buildDiceRolled(2, 3, 4, 5, 6)).fullHouse());
-        assertEquals(0, new Yatzy(buildDiceRolled(2, 2, 2, 2, 6)).fullHouse());
+        assertEquals(18, new Yatzy(buildDiceRolled(6, 2, 2, 2, 6)).calculerScorePourFull());
+        assertEquals(0, new Yatzy(buildDiceRolled(2, 3, 4, 5, 6)).calculerScorePourFull());
+        assertEquals(0, new Yatzy(buildDiceRolled(2, 2, 2, 2, 6)).calculerScorePourFull());
     }
 }

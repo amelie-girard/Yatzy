@@ -13,6 +13,11 @@ public class DiceRolled {
         return dices;
     }
 
+    public int calculerSommeDeTousLesDes(){
+        int []sum = {0};
+        dices.forEach(dice -> sum[0] += dice.getNumber());
+        return sum[0];
+    }
     public int calculerLaSommeDesDesDeNombreN(int i) {
         int[] sum = { 0 };
         dices.stream().filter(dice -> dice.getNumber() == i).forEach(dice -> sum[0] += dice.getNumber());
@@ -50,7 +55,7 @@ public class DiceRolled {
         return new DiceRolled(dices);
     }
 
-    public int additionnerNDesDeMemeNombre(int n) {
+    int additionnerNDesDeMemeNombre(int n) {
         int counts = 1;
         DiceRolled sortedDiceRolled = sort();
         int sum = sortedDiceRolled.getDices().get(0).getNumber();
@@ -79,5 +84,15 @@ public class DiceRolled {
         }
         sum += sortedDiceRolled.getDices().get(sortedDiceRolled.getDices().size() - 1).getNumber();
         return sum;
+    }
+
+    int calculerNombreDeDesDistinct(){
+        int total = 1;
+        for (int i = 0; i < dices.size() - 1; i++) {
+            if(!dices.get(i).isEqual(dices.get(i + 1))){
+                total ++;
+            }
+        }
+        return total;
     }
 }

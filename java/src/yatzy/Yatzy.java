@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 
 public class Yatzy {
 
-
     private List<Integer> dices;
     private DiceRolled diceRolled;
 
@@ -18,14 +17,12 @@ public class Yatzy {
         dices = Arrays.asList(d1, d2, d3, d4, d5);
     }
 
-    public Yatzy(DiceRolled diceRolled){
+    public Yatzy(DiceRolled diceRolled) {
         this.diceRolled = diceRolled;
     }
 
     int chance() {
-        int[] total = { 0 };
-        dices.forEach(dice -> total[0] += dice);
-        return total[0];
+       return diceRolled.calculerSommeDeTousLesDes();
     }
 
     public int yatzy() {
@@ -34,56 +31,61 @@ public class Yatzy {
         return distinctDice.size() == 1 ? 50 : 0;
     }
 
-    int calculerScoreSiCategorieSimple(DiceNumberEnum number){
+    int calculerScoreSiCategorieSimple(DiceNumberEnum number) {
         SimpleNumberCategory simpleNumberCategory = new SimpleNumberCategory(diceRolled);
-        switch(number) {
-        case UN : return simpleNumberCategory.calculerLaSommeDesDesDeNombreUn();
-        case DEUX : return simpleNumberCategory.calculerLaSommeDesDesDeNombreDeux();
-        case TROIS : return simpleNumberCategory.calculerLaSommeDesDesDeNombreTrois();
-        case QUATRE: return simpleNumberCategory.calculerLaSommeDesDesDeNombreQuatre();
-        case CINQ : return simpleNumberCategory.calculerLaSommeDesDesDeNombreCinq();
-        case SIX : return simpleNumberCategory.calculerLaSommeDesDesDeNombreSix();
-        default: return 0;
+        switch (number) {
+        case UN:
+            return simpleNumberCategory.calculerLaSommeDesDesDeNombreUn();
+        case DEUX:
+            return simpleNumberCategory.calculerLaSommeDesDesDeNombreDeux();
+        case TROIS:
+            return simpleNumberCategory.calculerLaSommeDesDesDeNombreTrois();
+        case QUATRE:
+            return simpleNumberCategory.calculerLaSommeDesDesDeNombreQuatre();
+        case CINQ:
+            return simpleNumberCategory.calculerLaSommeDesDesDeNombreCinq();
+        case SIX:
+            return simpleNumberCategory.calculerLaSommeDesDesDeNombreSix();
+        default:
+            return 0;
         }
 
     }
 
-    int calculerScorePourUnePaire(){
+    int calculerScorePourUnePaire() {
         PairCategory pairCategory = new PairCategory(diceRolled);
         return pairCategory.calculerScorePourUnePaire();
     }
 
-    int calculerScorePourDeuxPaires(){
+    int calculerScorePourDeuxPaires() {
         PairCategory pairCategory = new PairCategory(diceRolled);
         return pairCategory.calculerScorePourDeuxPaires();
     }
 
-
-     int fourOfaKind() {
+    int calculerScorePourCarre() {
         return diceRolled.additionnerNDesDeMemeNombre(4);
     }
 
-    int threeOfaKind() {
+    int calculerScorePourBrelan() {
         return diceRolled.additionnerNDesDeMemeNombre(3);
     }
 
-    int smallStraight() {
+    int calculerScorePourPetiteSuite() {
         StraightCategory straightCategory = new StraightCategory(diceRolled);
         return straightCategory.smallStraight();
     }
 
-
-
-    int largeStraight() {
+    int calculerScorePourGrandeSuite() {
         StraightCategory straightCategory = new StraightCategory(diceRolled);
         return straightCategory.largeStraight();
     }
 
-    int fullHouse() {
-        List<Integer> distinctDice = dices.stream().distinct().collect(Collectors.toList());
-        if (distinctDice.size() == 2 && fourOfaKind() == 0) {
+    int calculerScorePourFull() {
+        DiceRolled sortedDiceRolled = diceRolled.sort();
+        int numberOfDistinctDice = sortedDiceRolled.calculerNombreDeDesDistinct();
+        if (numberOfDistinctDice == 2 && calculerScorePourCarre() == 0) {
             int[] sum = { 0 };
-            dices.forEach(dice -> sum[0] += dice);
+            diceRolled.getDices().forEach(dice -> sum[0] += dice.getNumber());
             return sum[0];
         } else
             return 0;
