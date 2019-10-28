@@ -1,3 +1,5 @@
+package yatzy;
+
 public enum DiceNumberEnum {
 
     UN(1),

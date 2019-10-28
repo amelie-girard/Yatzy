@@ -1,3 +1,8 @@
+package yatzy;
+
+import yatzy.scoringcategory.PairCategory;
+import yatzy.scoringcategory.SimpleNumberCategory;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -42,45 +47,16 @@ public class Yatzy {
 
     }
 
-    int scorePair() {
-        List<Integer> sortedList = dices.stream().sorted().collect(Collectors.toList());
-        for (int i = sortedList.size() - 1; i > 0; i--) {
-            if (findPairOfN(sortedList.get(i))){
-                return sortedList.get(i) * 2;
-            }
-        }
-        return 0;
+    int calculerScorePourUnePaire(){
+        PairCategory pairCategory = new PairCategory(diceRolled);
+        return pairCategory.calculerScorePourUnePaire();
     }
 
-    private boolean findPairOfN(int n) {
-        int[] total = { 0 };
-        dices.forEach(dice -> {
-            if (dice == n)
-                total[0]++;
-        });
-        return total[0] >= 2;
+    int calculerScorePourDeuxPaires(){
+        PairCategory pairCategory = new PairCategory(diceRolled);
+        return pairCategory.calculerScorePourDeuxPaires();
     }
 
-     int twoPairs() {
-        int nbPair = 0;
-        int sum = 0;
-        List<Integer> sortedList = dices.stream().sorted().collect(Collectors.toList());
-        for (int i = sortedList.size() - 1; i > 0; i--) {
-            if (findPairOfN(sortedList.get(i))) {
-                sum += (sortedList.get(i) * 2);
-                nbPair++;
-                removeN(sortedList.get(i));
-            }
-        }
-        return nbPair == 2 ? sum : 0;
-    }
-
-    private void removeN(int n) {
-        for (int i = 0; i < dices.size(); i++) {
-            if (dices.get(i) == n)
-                dices.set(i, -1);
-        }
-    }
 
      int fourOfaKind() {
         int diffDices = dices.stream().distinct().collect(Collectors.toList()).size();

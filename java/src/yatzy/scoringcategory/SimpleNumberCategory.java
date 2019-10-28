@@ -1,32 +1,37 @@
-class SimpleNumberCategory {
+package yatzy.scoringcategory;
+
+import yatzy.DiceNumberEnum;
+import yatzy.DiceRolled;
+
+public class SimpleNumberCategory {
 
     private final DiceRolled diceRolled;
 
-    SimpleNumberCategory(DiceRolled diceRolled){
+    public SimpleNumberCategory(DiceRolled diceRolled){
         this.diceRolled = diceRolled;
     }
 
-    int calculerLaSommeDesDesDeNombreUn() {
+    public int calculerLaSommeDesDesDeNombreUn() {
         return diceRolled.calculerLaSommeDesDesDeNombreN(DiceNumberEnum.UN.getValue());
     }
 
-    int calculerLaSommeDesDesDeNombreDeux() {
+    public int calculerLaSommeDesDesDeNombreDeux() {
         return diceRolled.calculerLaSommeDesDesDeNombreN(DiceNumberEnum.DEUX.getValue());
     }
 
-    int calculerLaSommeDesDesDeNombreTrois() {
+    public int calculerLaSommeDesDesDeNombreTrois() {
         return diceRolled.calculerLaSommeDesDesDeNombreN(DiceNumberEnum.TROIS.getValue());
     }
 
-    int calculerLaSommeDesDesDeNombreQuatre() {
+    public int calculerLaSommeDesDesDeNombreQuatre() {
         return diceRolled.calculerLaSommeDesDesDeNombreN(DiceNumberEnum.QUATRE.getValue());
     }
 
-    int calculerLaSommeDesDesDeNombreCinq() {
+    public int calculerLaSommeDesDesDeNombreCinq() {
         return diceRolled.calculerLaSommeDesDesDeNombreN(DiceNumberEnum.CINQ.getValue());
     }
 
-    int calculerLaSommeDesDesDeNombreSix() {
+    public int calculerLaSommeDesDesDeNombreSix() {
         return diceRolled.calculerLaSommeDesDesDeNombreN(DiceNumberEnum.SIX.getValue());
     }
 }

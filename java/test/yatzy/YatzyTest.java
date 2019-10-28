@@ -1,3 +1,5 @@
+package yatzy;
+
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -77,16 +79,16 @@ public class YatzyTest {
 
     @Test
     void one_pair() {
-        assertEquals(6, new Yatzy(3, 4, 3, 5, 6).scorePair());
-        assertEquals(10, new Yatzy(5, 3, 3, 3, 5).scorePair());
-        assertEquals(12, new Yatzy(5, 3, 6, 6, 5).scorePair());
-        assertEquals(0, new Yatzy(1, 2, 3, 4, 5).scorePair());
+        assertEquals(6, new Yatzy(buildDiceRolled(3, 4, 3, 5, 6)).calculerScorePourUnePaire());
+        assertEquals(10, new Yatzy(buildDiceRolled(5, 3, 3, 3, 5)).calculerScorePourUnePaire());
+        assertEquals(12, new Yatzy(buildDiceRolled(5, 3, 6, 6, 5)).calculerScorePourUnePaire());
+        assertEquals(0, new Yatzy(buildDiceRolled(1, 2, 3, 4, 5)).calculerScorePourUnePaire());
     }
 
     @Test
     void two_Pair() {
-        assertEquals(16, new Yatzy(3, 3, 5, 4, 5).twoPairs());
-        assertEquals(16, new Yatzy(3, 3, 5, 5, 5).twoPairs());
+        assertEquals(16, new Yatzy(buildDiceRolled(3, 3, 5, 4, 5)).calculerScorePourDeuxPaires());
+        assertEquals(16, new Yatzy(buildDiceRolled(3, 3, 5, 5, 5)).calculerScorePourDeuxPaires());
     }
 
     @Test
