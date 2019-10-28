@@ -109,22 +109,22 @@ public class YatzyTest {
 
     @Test
     void smallStraight() {
-        assertEquals(15, new Yatzy(1, 2, 3, 4, 5).smallStraight());
-        assertEquals(15, new Yatzy(2, 3, 4, 5, 1).smallStraight());
-        assertEquals(0, new Yatzy(2, 2, 3, 4, 5).smallStraight());
+        assertEquals(15, new Yatzy(buildDiceRolled(1, 2, 3, 4, 5)).smallStraight());
+        assertEquals(15, new Yatzy(buildDiceRolled(2, 3, 4, 5, 1)).smallStraight());
+        assertEquals(0, new Yatzy(buildDiceRolled(2, 2, 3, 4, 5)).smallStraight());
     }
 
     @Test
     void largeStraight() {
-        assertEquals(20, new Yatzy(6, 2, 3, 4, 5).largeStraight());
-        assertEquals(20, new Yatzy(2, 3, 4, 5, 6).largeStraight());
-        assertEquals(0, new Yatzy(1, 2, 2, 4, 5).largeStraight());
+        assertEquals(20, new Yatzy(buildDiceRolled(6, 2, 3, 4, 5)).largeStraight());
+        assertEquals(20, new Yatzy(buildDiceRolled(2, 3, 4, 5, 6)).largeStraight());
+        assertEquals(0, new Yatzy(buildDiceRolled(1, 2, 2, 4, 5)).largeStraight());
     }
 
-   /* @Test
+   @Test
     void fullHouse() {
-        assertEquals(18, new Yatzy(6, 2, 2, 2, 6).fullHouse());
-        assertEquals(0, new Yatzy(2, 3, 4, 5, 6).fullHouse());
-        assertEquals(0, new Yatzy(2, 2, 2, 2, 6).fullHouse());
-    }*/
+        assertEquals(18, new Yatzy(buildDiceRolled(6, 2, 2, 2, 6)).fullHouse());
+        assertEquals(0, new Yatzy(buildDiceRolled(2, 3, 4, 5, 6)).fullHouse());
+        assertEquals(0, new Yatzy(buildDiceRolled(2, 2, 2, 2, 6)).fullHouse());
+    }
 }

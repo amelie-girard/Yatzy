@@ -67,4 +67,17 @@ public class DiceRolled {
         }
         return counts == n ? sum : 0;
     }
+
+    public int calculateSumIfFollowingDices(DiceRolled sortedDiceRolled) {
+        int sum = 0;
+        for (int i = 0; i < sortedDiceRolled.getDices().size() - 1; i++) {
+            if (sortedDiceRolled.getDices().get(i).getNumber() == (sortedDiceRolled.getDices().get(i + 1).getNumber() - 1)) {
+                sum += sortedDiceRolled.getDices().get(i).getNumber();
+            } else {
+                return 0;
+            }
+        }
+        sum += sortedDiceRolled.getDices().get(sortedDiceRolled.getDices().size() - 1).getNumber();
+        return sum;
+    }
 }

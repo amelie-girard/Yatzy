@@ -2,6 +2,7 @@ package yatzy;
 
 import yatzy.scoringcategory.PairCategory;
 import yatzy.scoringcategory.SimpleNumberCategory;
+import yatzy.scoringcategory.StraightCategory;
 
 import java.util.Arrays;
 import java.util.List;
@@ -67,32 +68,15 @@ public class Yatzy {
     }
 
     int smallStraight() {
-        List<Integer> orderedList = dices.stream().sorted().collect(Collectors.toList());
-        if (orderedList.get(0) != 1) {
-            return 0;
-        }
-        return calculateSumIfFollowingDices(orderedList);
+        StraightCategory straightCategory = new StraightCategory(diceRolled);
+        return straightCategory.smallStraight();
     }
 
-    private int calculateSumIfFollowingDices(List<Integer> orderedList) {
-        int sum = 0;
-        for (int i = 0; i < orderedList.size() - 1; i++) {
-            if (orderedList.get(i) == (orderedList.get(i + 1) - 1)) {
-                sum += orderedList.get(i);
-            } else {
-                return 0;
-            }
-        }
-        sum += orderedList.get(orderedList.size() - 1);
-        return sum;
-    }
+
 
     int largeStraight() {
-        List<Integer> orderedList = dices.stream().sorted().collect(Collectors.toList());
-        if (orderedList.get(0) != 2) {
-            return 0;
-        }
-        return calculateSumIfFollowingDices(orderedList);
+        StraightCategory straightCategory = new StraightCategory(diceRolled);
+        return straightCategory.largeStraight();
     }
 
     int fullHouse() {
