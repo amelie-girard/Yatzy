@@ -28,52 +28,47 @@ public class YatzyTest {
 
     @Test
     public void test_1s() {
-        assertTrue(new Yatzy(buildDiceRolled(1, 2, 3, 4, 5)).ones() == 1);
-        assertEquals(2, new Yatzy(buildDiceRolled(1, 2, 1, 4, 5)).ones());
-        assertEquals(0, new Yatzy(buildDiceRolled(6, 2, 2, 4, 5)).ones());
-        assertEquals(4, new Yatzy(buildDiceRolled(1, 2, 1, 1, 1)).ones());
+        assertTrue(new Yatzy(buildDiceRolled(1, 2, 3, 4, 5)).calculerLaSommeDesDesDeNombreUn() == 1);
+        assertEquals(2, new Yatzy(buildDiceRolled(1, 2, 1, 4, 5)).calculerLaSommeDesDesDeNombreUn());
+        assertEquals(0, new Yatzy(buildDiceRolled(6, 2, 2, 4, 5)).calculerLaSommeDesDesDeNombreUn());
+        assertEquals(4, new Yatzy(buildDiceRolled(1, 2, 1, 1, 1)).calculerLaSommeDesDesDeNombreUn());
     }
 
     private DiceRolled buildDiceRolled(int a, int b, int c, int d, int e) {
-        return new DiceRolled(Arrays.asList(
-                new Dice(a),
-                new Dice(b),
-                new Dice(c),
-                new Dice(d),
-                new Dice(e)));
+        return new DiceRolled(Arrays.asList(new Dice(a), new Dice(b), new Dice(c), new Dice(d), new Dice(e)));
     }
 
     @Test
     public void test_2s() {
-        assertEquals(4, new Yatzy(buildDiceRolled(1, 2, 3, 2, 6)).twos());
-        assertEquals(10, new Yatzy(buildDiceRolled(2, 2, 2, 2, 2)).twos());
+        assertEquals(4, new Yatzy(buildDiceRolled(1, 2, 3, 2, 6)).calculerLaSommeDesDesDeNombreDeux());
+        assertEquals(10, new Yatzy(buildDiceRolled(2, 2, 2, 2, 2)).calculerLaSommeDesDesDeNombreDeux());
     }
 
     @Test
     public void test_threes() {
-        assertEquals(6, new Yatzy(buildDiceRolled(1, 2, 3, 2, 3)).threes());
-        assertEquals(12, new Yatzy(buildDiceRolled(2, 3, 3, 3, 3)).threes());
+        assertEquals(6, new Yatzy(buildDiceRolled(1, 2, 3, 2, 3)).calculerLaSommeDesDesDeNombreTrois());
+        assertEquals(12, new Yatzy(buildDiceRolled(2, 3, 3, 3, 3)).calculerLaSommeDesDesDeNombreTrois());
     }
 
     @Test
     public void fours_test() {
-        assertEquals(12, new Yatzy(buildDiceRolled(4, 4, 4, 5, 5)).fours());
-        assertEquals(8, new Yatzy(buildDiceRolled(4, 4, 5, 5, 5)).fours());
-        assertEquals(4, new Yatzy(buildDiceRolled(4, 5, 5, 5, 5)).fours());
+        assertEquals(12, new Yatzy(buildDiceRolled(4, 4, 4, 5, 5)).calculerLaSommeDesDesDeNombreQuatre());
+        assertEquals(8, new Yatzy(buildDiceRolled(4, 4, 5, 5, 5)).calculerLaSommeDesDesDeNombreQuatre());
+        assertEquals(4, new Yatzy(buildDiceRolled(4, 5, 5, 5, 5)).calculerLaSommeDesDesDeNombreQuatre());
     }
 
     @Test
     public void fives() {
-        assertEquals(10, new Yatzy(buildDiceRolled(4, 4, 4, 5, 5)).fives());
-        assertEquals(15, new Yatzy(buildDiceRolled(4, 4, 5, 5, 5)).fives());
-        assertEquals(20, new Yatzy(buildDiceRolled(4, 5, 5, 5, 5)).fives());
+        assertEquals(10, new Yatzy(buildDiceRolled(4, 4, 4, 5, 5)).calculerLaSommeDesDesDeNombreCinq());
+        assertEquals(15, new Yatzy(buildDiceRolled(4, 4, 5, 5, 5)).calculerLaSommeDesDesDeNombreCinq());
+        assertEquals(20, new Yatzy(buildDiceRolled(4, 5, 5, 5, 5)).calculerLaSommeDesDesDeNombreCinq());
     }
 
     @Test
     public void sixes_test() {
-        assertEquals(0, new Yatzy(buildDiceRolled(4, 4, 4, 5, 5)).sixes());
-        assertEquals(6, new Yatzy(buildDiceRolled(4, 4, 6, 5, 5)).sixes());
-        assertEquals(18, new Yatzy(buildDiceRolled(6, 5, 6, 6, 5)).sixes());
+        assertEquals(0, new Yatzy(buildDiceRolled(4, 4, 4, 5, 5)).calculerLaSommeDesDesDeNombreSix());
+        assertEquals(6, new Yatzy(buildDiceRolled(4, 4, 6, 5, 5)).calculerLaSommeDesDesDeNombreSix());
+        assertEquals(18, new Yatzy(buildDiceRolled(6, 5, 6, 6, 5)).calculerLaSommeDesDesDeNombreSix());
     }
 
     @Test

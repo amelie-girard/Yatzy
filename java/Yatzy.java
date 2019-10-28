@@ -28,37 +28,31 @@ public class Yatzy {
         return distinctDice.size() == 1 ? 50 : 0;
     }
 
-    public int ones() {
+    int calculerLaSommeDesDesDeNombreUn() {
         return diceRolled.calculerLaSommeDesDesDeNombreN(DiceNumberEnum.UN.getValue());
     }
 
-    private int numberOfNs(int i) {
-        int[] sum = { 0 };
-        dices.stream().filter(dice -> dice == i).forEach(dice -> sum[0] += dice);
-        return sum[0];
-    }
-
-    public int twos() {
+    int calculerLaSommeDesDesDeNombreDeux() {
         return diceRolled.calculerLaSommeDesDesDeNombreN(DiceNumberEnum.DEUX.getValue());
     }
 
-    public int threes() {
+    int calculerLaSommeDesDesDeNombreTrois() {
         return diceRolled.calculerLaSommeDesDesDeNombreN(DiceNumberEnum.TROIS.getValue());
     }
 
-    public int fours() {
+    int calculerLaSommeDesDesDeNombreQuatre() {
         return diceRolled.calculerLaSommeDesDesDeNombreN(DiceNumberEnum.QUATRE.getValue());
     }
 
-    public int fives() {
+    int calculerLaSommeDesDesDeNombreCinq() {
         return diceRolled.calculerLaSommeDesDesDeNombreN(DiceNumberEnum.CINQ.getValue());
     }
 
-    public int sixes() {
+    int calculerLaSommeDesDesDeNombreSix() {
         return diceRolled.calculerLaSommeDesDesDeNombreN(DiceNumberEnum.SIX.getValue());
     }
 
-    public int scorePair() {
+    int scorePair() {
         List<Integer> sortedList = dices.stream().sorted().collect(Collectors.toList());
         for (int i = sortedList.size() - 1; i > 0; i--) {
             if (findPairOfN(sortedList.get(i))){
